@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from "react-router-dom";
+
+import Home from "./pages/Home";
+import Layout from "./components/Layout";
+import Auth from "./pages/Auth";
+import AlbumView from "./pages/AlbumView";
+import ImageDetailsView from "./pages/ImageDetailsView";
+import "./App.scss";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route path="/album/:id" component={AlbumView} />
+        <Route path="/image/:id" component={ImageDetailsView} />
+        <Route path="/auth" component={Auth} />
+        <Route>{() => <h1>Not match</h1>}</Route>
+      </Switch>
+    </Layout>
   );
 }
 
